@@ -1,0 +1,206 @@
+---
+title: "Lab 04"
+author: Owen
+format:
+  html:
+    toc: true
+---
+
+# World Bank
+
+```{r}
+#| include = FALSE
+
+
+# Load the tidyr package
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+# Read the CSV file, skipping the first few lines
+data <- read.csv("world/world.csv", skip = 3)
+
+# Check the structure of the data
+str(data)
+
+# Reshape the data from wide to long format
+data_long <- pivot_longer(data, cols = starts_with("X"), names_to = "Year", values_to = "Population")
+
+# View the first few rows of the long format data
+head(data_long)
+
+data_long <- data_long %>% rename(Country = Country.Name)
+data_long <- data_long %>% rename(Code = Country.Code)
+data_long <- data_long %>% rename(Indicator = Indicator.Name)
+data_long <- data_long %>% rename(ICode = Indicator.Code)
+
+data_long$Indicator[data_long$Indicator == 'Population, total'] <- 'Population' 
+
+data_long$Year <- sub("^X", "", data_long$Year)
+
+data_long <- subset(data_long, select = -c(ICode, Indicator))
+
+data_long <- na.omit(data_long)
+
+# Add an ID column
+data_long$ID <- seq_len(nrow(data_long))
+
+# Reorder the columns so that ID is the first column
+data_long <- data_long[, c("ID", names(data_long)[!names(data_long) %in% "ID"])]
+
+# Write the reshaped data to a CSV file
+write.csv(data_long, "reshaped_data.csv", row.names = FALSE)
+
+```
+
+# Forest
+
+```{r}
+#| include = FALSE
+
+# Load the tidyr package
+library(tidyr)
+library(dplyr)
+library(ggplot2)
+
+# Read the CSV file, skipping the first few lines
+data <- read.csv("forest/forest.csv", skip = 3)
+
+# Check the structure of the data
+str(data)
+
+# Reshape the data from wide to long format
+data_long <- pivot_longer(data, cols = starts_with("X"), names_to = "Year", values_to = "ForestArea")
+
+# View the first few rows of the long format data
+head(data_long)
+
+data_long <- data_long %>% rename(Country = Country.Name)
+data_long <- data_long %>% rename(Code = Country.Code)
+data_long <- data_long %>% rename(Indicator = Indicator.Name)
+data_long <- data_long %>% rename(ICode = Indicator.Code)
+
+data_long$Year <- sub("^X", "", data_long$Year)
+
+data_long <- na.omit(data_long)
+
+data_long <- subset(data_long, select = -c(ICode, Indicator))
+
+# Add an ID column
+data_long$ID <- seq_len(nrow(data_long))
+
+# Reorder the columns so that ID is the first column
+data_long <- data_long[, c("ID", names(data_long)[!names(data_long) %in% "ID"])]
+
+# Write the reshaped data to a CSV file
+write.csv(data_long, "reshaped_forest.csv", row.names = FALSE)
+
+```
+
+# Country Code
+
+```{r}
+library(tidyr)
+library(dplyr)
+
+# Read the CSV file, skipping the first few lines
+data <- read.csv("country_codes.csv")
+
+# Check the structure of the data
+str(data)
+
+# View the first few rows of the long format data
+head(data)
+
+data <- data %>% rename(Country = country_name_en)
+data <- data %>% rename(Code = country_code)
+data <- data %>% rename(Subregion = un_subregion)
+
+data <- na.omit(data)
+
+# Add an ID column
+data$ID <- seq_len(nrow(data))
+
+# Reorder the columns so that ID is the first column
+data <- data[, c("ID", names(data)[!names(data) %in% "ID"])]
+
+# Write the dataframe to a CSV file
+write.csv(data, "reshaped_code.csv", row.names = FALSE)
+
+```
+
+# Using SQL to join data 
+
+```{r} 
+#| include = FALSE
+
+library(DBI)
+
+con <- dbConnect(odbc::odbc(), dsn="world", timeout = 10)
+
+```
+
+```{sql}
+#| connection = con
+
+DROP TABLE IF EXISTS world CASCADE;
+CREATE TABLE world (
+    ID INT,
+    Country CHAR(500),
+    Code VARCHAR(500),
+    Year INT,
+    Population DOUBLE PRECISION,
+    PRIMARY KEY (ID)
+);
+COPY world 
+FROM 'C:/Users/phoin/Documents/RProject/lab/reshaped_data.csv'
+CSV HEADER;
+
+DROP TABLE IF EXISTS forest CASCADE;
+CREATE TABLE forest (
+    ID INT,
+    Country CHAR(500),
+    Code VARCHAR(500),
+    Year INT,
+    ForestArea FLOAT,
+    PRIMARY KEY (ID)
+);
+COPY forest 
+FROM 'C:/Users/phoin/Documents/RProject/lab/reshaped_forest.csv'
+CSV HEADER;
+
+DROP TABLE IF EXISTS code CASCADE;
+CREATE TABLE code (
+    ID INT,
+    Country CHAR(500),
+    Code VARCHAR(500),
+    Subregion CHAR(500),
+    PRIMARY KEY (ID)
+);
+COPY code 
+FROM 'C:/Users/phoin/Documents/RProject/lab/reshaped_code.csv'
+CSV HEADER;
+
+```
+
+# Seeing the tables
+
+```{sql}
+#| connection = con  
+
+SELECT * FROM world
+```
+
+# Join tables
+```{sql}
+#| connection = con  
+
+SELECT world.Country, world.Year, world.Population, forest.ForestArea, code.Subregion
+FROM world
+LEFT JOIN forest ON world.Country = forest.Country
+LEFT JOIN code ON world.Country = code.Country;
+```
+
+
+
+
