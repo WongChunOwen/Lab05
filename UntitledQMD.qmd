@@ -197,8 +197,8 @@ SELECT * FROM world
 
 SELECT world.Country, world.Year, world.Population, forest.ForestArea, code.Subregion
 FROM world
-LEFT JOIN forest ON world.Country = forest.Country
-LEFT JOIN code ON world.Country = code.Country;
+INNER JOIN forest ON world.Country = forest.Country
+INNER JOIN code ON world.Country = code.Country;
 ```
 
 
