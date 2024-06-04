@@ -9,7 +9,6 @@ format:
 # World Bank
 
 ```{r}
-#| include = FALSE
 
 
 # Load the tidyr package
@@ -21,7 +20,8 @@ library(ggplot2)
 data <- read.csv("world/world.csv", skip = 3)
 
 # Check the structure of the data
-str(data)
+print(data$Country.Name)
+#summary(data)
 
 # Reshape the data from wide to long format
 data_long <- pivot_longer(data, cols = starts_with("X"), names_to = "Year", values_to = "Population")
@@ -56,7 +56,6 @@ write.csv(data_long, "reshaped_data.csv", row.names = FALSE)
 # Forest
 
 ```{r}
-#| include = FALSE
 
 # Load the tidyr package
 library(tidyr)
@@ -109,8 +108,8 @@ data <- read.csv("country_codes.csv")
 # Check the structure of the data
 str(data)
 
-# View the first few rows of the long format data
-head(data)
+print(data$country_name_en)
+summary(data)
 
 data <- data %>% rename(Country = country_name_en)
 data <- data %>% rename(Code = country_code)
