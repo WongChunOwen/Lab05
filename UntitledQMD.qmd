@@ -195,10 +195,37 @@ SELECT * FROM world
 ```{sql}
 #| connection = con  
 
-SELECT world.Country, world.Year, world.Population, forest.ForestArea, code.Subregion
+SELECT world.Country, world.Year, world.Population
 FROM world
-INNER JOIN forest ON world.Country = forest.Country
-INNER JOIN code ON world.Country = code.Country;
+```
+```{sql}
+#| connection = con  
+
+SELECT Country, Year, ForestArea
+FROM forest
+WHERE Country = 'Afghanistan'
+```
+```{sql}
+#| connection = con
+
+SELECT 
+    A.ID,
+    A.Country,
+    A.Code,
+    A.Year,
+    B.ForestArea,
+    C.Subregion,
+    A.Population
+FROM 
+    world AS A
+JOIN 
+    forest AS B ON A.Country = B.Country AND A.Code = B.Code AND A.Year = B.Year
+JOIN 
+    code AS C ON A.Country = C.Country AND A.Code = C.Code 
+ORDER BY 
+    A.Country ASC, A.Year ASC;
+    
+
 ```
 
 

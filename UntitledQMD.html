@@ -303,27 +303,16 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <section id="join-tables" class="level1">
 <h1>Join tables</h1>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> world.Country, world.<span class="dt">Year</span>, world.Population, forest.ForestArea, code.Subregion</span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world</span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> forest <span class="kw">ON</span> world.Country <span class="op">=</span> forest.Country</span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a><span class="kw">INNER</span> <span class="kw">JOIN</span> code <span class="kw">ON</span> world.Country <span class="op">=</span> code.Country;</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> world.Country, world.<span class="dt">Year</span>, world.Population</span>
+<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> world</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 <div class="cell-output-display">
 <table class="table table-sm table-striped small">
 <caption>Displaying records 1 - 10</caption>
-<colgroup>
-<col style="width: 11%">
-<col style="width: 7%">
-<col style="width: 16%">
-<col style="width: 16%">
-<col style="width: 47%">
-</colgroup>
 <thead>
 <tr class="header">
 <th style="text-align: left;">country</th>
 <th style="text-align: right;">year</th>
 <th style="text-align: right;">population</th>
-<th style="text-align: right;">forestarea</th>
-<th style="text-align: left;">subregion</th>
 </tr>
 </thead>
 <tbody>
@@ -331,71 +320,247 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <td style="text-align: left;">Aruba</td>
 <td style="text-align: right;">1960</td>
 <td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1961</td>
+<td style="text-align: right;">55811</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1962</td>
+<td style="text-align: right;">56682</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1963</td>
+<td style="text-align: right;">57475</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1964</td>
+<td style="text-align: right;">58178</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1965</td>
+<td style="text-align: right;">58782</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1966</td>
+<td style="text-align: right;">59291</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1967</td>
+<td style="text-align: right;">59522</td>
 </tr>
 <tr class="odd">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1968</td>
+<td style="text-align: right;">59471</td>
 </tr>
 <tr class="even">
 <td style="text-align: left;">Aruba</td>
-<td style="text-align: right;">1960</td>
-<td style="text-align: right;">54608</td>
-<td style="text-align: right;">4.2</td>
-<td style="text-align: left;">Latin America and the Caribbean</td>
+<td style="text-align: right;">1969</td>
+<td style="text-align: right;">59330</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb9"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb9-1"><a href="#cb9-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> Country, <span class="dt">Year</span>, ForestArea</span>
+<span id="cb9-2"><a href="#cb9-2" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> forest</span>
+<span id="cb9-3"><a href="#cb9-3" aria-hidden="true" tabindex="-1"></a><span class="kw">WHERE</span> Country <span class="op">=</span> <span class="st">'Afghanistan'</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">country</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">forestarea</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1997</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1998</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">12084.4</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="cell">
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode sql code-with-copy"><code class="sourceCode sql"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="kw">SELECT</span> </span>
+<span id="cb10-2"><a href="#cb10-2" aria-hidden="true" tabindex="-1"></a>    A.<span class="kw">ID</span>,</span>
+<span id="cb10-3"><a href="#cb10-3" aria-hidden="true" tabindex="-1"></a>    A.Country,</span>
+<span id="cb10-4"><a href="#cb10-4" aria-hidden="true" tabindex="-1"></a>    A.Code,</span>
+<span id="cb10-5"><a href="#cb10-5" aria-hidden="true" tabindex="-1"></a>    A.<span class="dt">Year</span>,</span>
+<span id="cb10-6"><a href="#cb10-6" aria-hidden="true" tabindex="-1"></a>    B.ForestArea,</span>
+<span id="cb10-7"><a href="#cb10-7" aria-hidden="true" tabindex="-1"></a>    C.Subregion,</span>
+<span id="cb10-8"><a href="#cb10-8" aria-hidden="true" tabindex="-1"></a>    A.Population</span>
+<span id="cb10-9"><a href="#cb10-9" aria-hidden="true" tabindex="-1"></a><span class="kw">FROM</span> </span>
+<span id="cb10-10"><a href="#cb10-10" aria-hidden="true" tabindex="-1"></a>    world <span class="kw">AS</span> A</span>
+<span id="cb10-11"><a href="#cb10-11" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> </span>
+<span id="cb10-12"><a href="#cb10-12" aria-hidden="true" tabindex="-1"></a>    forest <span class="kw">AS</span> B <span class="kw">ON</span> A.Country <span class="op">=</span> B.Country <span class="kw">AND</span> A.Code <span class="op">=</span> B.Code <span class="kw">AND</span> A.<span class="dt">Year</span> <span class="op">=</span> B.<span class="dt">Year</span></span>
+<span id="cb10-13"><a href="#cb10-13" aria-hidden="true" tabindex="-1"></a><span class="kw">JOIN</span> </span>
+<span id="cb10-14"><a href="#cb10-14" aria-hidden="true" tabindex="-1"></a>    code <span class="kw">AS</span> C <span class="kw">ON</span> A.Country <span class="op">=</span> C.Country <span class="kw">AND</span> A.Code <span class="op">=</span> C.Code </span>
+<span id="cb10-15"><a href="#cb10-15" aria-hidden="true" tabindex="-1"></a><span class="kw">ORDER</span> <span class="kw">BY</span> </span>
+<span id="cb10-16"><a href="#cb10-16" aria-hidden="true" tabindex="-1"></a>    A.Country <span class="kw">ASC</span>, A.<span class="dt">Year</span> <span class="kw">ASC</span>;</span>
+<span id="cb10-17"><a href="#cb10-17" aria-hidden="true" tabindex="-1"></a>    </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<table class="table table-sm table-striped small">
+<caption>Displaying records 1 - 10</caption>
+<thead>
+<tr class="header">
+<th style="text-align: left;">id</th>
+<th style="text-align: left;">country</th>
+<th style="text-align: left;">code</th>
+<th style="text-align: right;">year</th>
+<th style="text-align: right;">forestarea</th>
+<th style="text-align: left;">subregion</th>
+<th style="text-align: right;">population</th>
+</tr>
+</thead>
+<tbody>
+<tr class="odd">
+<td style="text-align: left;">157</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1990</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">10694796</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">158</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1991</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">10745167</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">159</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1992</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">12057433</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">160</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1993</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">14003760</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">161</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1994</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">15455555</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">162</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1995</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">16418912</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">163</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1996</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">17106595</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">164</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1997</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">17788819</td>
+</tr>
+<tr class="odd">
+<td style="text-align: left;">165</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1998</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">18493132</td>
+</tr>
+<tr class="even">
+<td style="text-align: left;">166</td>
+<td style="text-align: left;">Afghanistan</td>
+<td style="text-align: left;">AFG</td>
+<td style="text-align: right;">1999</td>
+<td style="text-align: right;">12084.4</td>
+<td style="text-align: left;">Southern Asia</td>
+<td style="text-align: right;">19262847</td>
 </tr>
 </tbody>
 </table>
